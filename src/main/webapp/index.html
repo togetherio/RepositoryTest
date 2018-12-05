@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+ 	function chaxun() {
+		var number = $("#num").val();
+		$.ajax({
+			type : "post",
+			url : "getInfo",
+			dataType : "json",
+			data:{mobilenumber:number},
+			success : function(result) {
+				console.log(result);
+				if(result != null){
+					$("#area").text("归属地:"+result.mobilearea);
+				}else{
+					$("#area").text("号码在号段库暂时不存在");
+				}
+			}
+		});
+	} 
+</script>
+</head>
+<body>
+	<h2>请输入电话号码:</h2>
+	<br>
+	<form method="post">
+		<input type="text" name="mobilenumber" id="num"> 
+		<input type="button" value="查询" onclick="chaxun()">
+	</form>
+	<h2 id="area"></h2>
+
+</body>
+</html>
